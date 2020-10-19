@@ -58,18 +58,42 @@ class arbol():
                     return self.buscar(dato, a.right)
 
     def acceder(self, dato, a):
-        if buscar(dato, a) == None:
+        if a == None:
             return None
+        else:
+            if dato == a.dato:
+                return a
+            else:
+                if dato < a.dato:
+                    return self.acceder(dato, a.left)
+                else:
+                    return self.acceder(dato, a.right)
 
-        else: 
-            return dato
+    def insertar_rama_der(self, a, raiz):
+        temp_izq = raiz.left
+        raiz.right = a.right
+        raiz.left = a.left
+        i = raiz.left
+        while i.left != None:
+            i = i.left
+        i.left = temp_izq
+
+    def insertar_rama_izq(self, a, raiz):
+        temp_der = raiz.right
+        raiz.left = a.left
+        raiz.right = a.right
+        i = raiz.right
+        while i.right != None:
+            i = i.right
+        i.right = temp_der
+
+
     
     def borrar(self, a, raiz):
         if  raiz.left.dato == a:
-            while True:
-                
+            insertar_rama_izq(a, raiz.left)  
         elif raiz.right.dato == a:
-            pass
+            insertar_rama_der(a, raiz.right)
         else:
             if a < raiz.dato:
                 return self.borrar(a, raiz.left)
