@@ -91,9 +91,9 @@ class arbol():
     
     def borrar(self, a, raiz):
         if  raiz.left.dato == a:
-            insertar_rama_izq(a, raiz.left)  
+            self.insertar_rama_izq(raiz.acceder(a, raiz), raiz.left)  
         elif raiz.right.dato == a:
-            insertar_rama_der(a, raiz.right)
+            self.insertar_rama_der(raiz.acceder(a, raiz), raiz.right)
         else:
             if a < raiz.dato:
                 return self.borrar(a, raiz.left)
